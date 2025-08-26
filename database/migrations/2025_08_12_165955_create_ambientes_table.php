@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ambientes', function (Blueprint $table) {
             $table->id();
             $table->string('nome')->nullable(false);
-            $table->string('descricao')->nullable();
+            $table->string('descricao')->nullable(true);
             $table->boolean('status')->default(true); // verdadeiro ou falso
             $table->timestamps();
         });
