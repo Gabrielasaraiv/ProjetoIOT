@@ -9,77 +9,81 @@
 
 
     {{-- Cartão principal --}}
-    <div class="card border-0 shadow rounded-3" style="margin-left: 20%; margin-right:20%">
-        <h5 class="card-header text-white fw-bold" style="background: linear-gradient(to right, #fff585, #fd85ad);">
+    <div class="card border-0 shadow rounded-3" style="margin-left: 10%; margin-right:10%">
+        <h5 class="card-header text-white fw-bold" style="background: linear-gradient(to right, #a0eef6, #5db1ff);">
             Cadastro de Sensor
         </h5>
 
-        <div class="card-body" style="background-color: rgb(255, 243, 253)">
+        <div class="card-body" style="background-color: rgb(243, 250, 255)">
             <form wire:submit.prevent="store">
+                <select class="form-select" aria-label="Default select example" wire:model.defer='ambiente_id' id="ambiente_id">
+                            <option selected>Ambiente</option>
+                        @foreach ($ambientes as $a)
+                        <option value="{{$a->id}}">{{$a->nome}}</option>
+                        @endforeach
+                        </select>
+
                 <div class="py-3">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4; widht:100%">
+                            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4;" style="width: 600px">
 
                                 <div class="bg-white p-4 rounded shadow-sm border border-light-subtle">
 
-                                 
+                                    {{-- Nome --}}
                                     <div class="mb-3">
                                         <label for="codigo" class="form-label fw-semibold">Código</label>
-                                        <input type="text" class="form-control" id="codigo" name="codigo"
-                                            placeholder="Código" wire:model.defer="codigo">
+                                        <input type="text" class="form-control" id="nome" name="codigo"
+                                            placeholder="Código do sensor" wire:model.defer="codigo">
                                         @error('codigo')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
 
-                                
+                                    {{-- tipo --}}
                                     <div class=mb-3>
-                                        <label for="tipo" class="form-label fw-semibold">Tipo</label>
+                                        <label for="tipo" class="form-label fw-semibold">Tipo de Sensor</label>
                                         <select class="form-select" id="tipo" name="tipo"
                                             wire:model.defer="tipo">
                                             <option hidden>Selecione</option>
-                                            <option value="luminosidade">Luminosidade</option>
-                                            <option value="rfid">Rfid</option>
-                                            <option value="infravermelho">Infravermelho</option>
-                                            <option value="temperartura">Temperatura</option>
-                                            <option value="umidade">Umidade</option>
-
+                                            <option value="Luminosidade">Luminosidade</option>
+                                            <option value="Rfid">Rfid</option>
+                                             <option value="Infravermelho">Infravermelho</option>
+                                            <option value="Temperatura">Temperatura</option>
+                                             <option value="Umidade">Umidade</option>
+                                           
                                         </select>
                                         @error('tipo')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
 
-                                    
+                                    {{-- Descrição --}}
                                     <div class="mb-3">
-                                        <label for="matricula" class="form-label fw-semibold">Matrícula</label>
-                                        <input type="integer" class="form-control" id="matricula" name="matricula"
-                                            placeholder="0000" wire:model.defer="matricula">
-                                        @error('matricula')
+                                        <label for="descricao" class="form-label">Descrição</label>
+                                        <textarea class="form-control" id="descricao" 
+                                        wire:model.defer="descricao"></textarea>
+                                        @error('descricao')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
 
-                                    {{-- Senha --}}
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">Senha</label>
-                                        <input type="password" class="form-control" id="password" wire:model="password"
-                                            placeholder="Digite sua senha">
-                                        @error('password')
-                                            <span class="text-danger">{{ $message }}</span>
+
+                                    {{-- status --}}
+                                    <div class=mb-3>
+                                        <label for="status" class="form-label fw-semibold">Status</label>
+                                        <select class="form-select" id="status" name="status"
+                                            wire:model.defer="status">
+                                            <option hidden>Selecione</option>
+                                            <option value="1">Ativo</option>
+                                            <option value="0">Inativo</option>
+                                        </select>
+                                        @error('status')
+                                            <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
 
-
-                                    {{-- Lembrar informações --}}
-                                    <div class="form-check mb-4">
-                                        <input class="form-check-input" type="checkbox" value="" id="rememberMe">
-                                        <label class="form-check-label text-muted" for="rememberMe">
-                                            Salvar informações
-                                        </label>
-                                    </div>
-
+                                    
                                     {{-- Botão --}}
                                     <html>
 
@@ -87,35 +91,35 @@
                                         <style>
                                             .botaoCadastrar {
 
-                                                width: 293px;
+                                                width: 526px;
                                                 height: 40px;
-                                                background-color: #ff5e86;
+                                                background-color: #93befc;
                                                 color: white;
-                                                border: #fd85ad;
+                                                border: #93a8fb;
                                                 border-radius: 5px;
                                             }
 
                                             .botaoCadastrar:hover {
-                                                background-color: #c94163;
+                                                background-color: #5b7eff;
                                                 color: #fff
                                             }
                                         </style>
                                     </head>
                                     <button type="submit" class="botaoCadastrar">
-                                        <i class="bi bi-person-plus-fill me-1"></i> Cadastrar Funcionário
+                                        <i class="bi bi-person-plus-fill me-1"></i> Cadastrar Sensor
                                     </button>
 
                                     </html>
 
-                                    @if (auth()->check())
+                                    
                                         {{-- Botão Cancelar --}}
                                         <div class="mt-3">
-                                            <a href="{{ route('funcionario.index') }}"
+                                            <a href="{{ route('sensor.index') }}"
                                                 class="btn btn-outline-danger w-100 py-2">
                                                 <i class="bi bi-x-circle me-1"></i> Cancelar
                                             </a>
                                         </div>
-                                    @endif
+                                    
                                 </div>
                             </div>
 

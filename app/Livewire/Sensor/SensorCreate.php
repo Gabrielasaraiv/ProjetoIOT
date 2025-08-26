@@ -18,7 +18,7 @@ class SensorCreate extends Component
     protected $rules = [
         'codigo' => 'max:100|min:2|unique:sensors,codigo',
         'tipo' => 'required',
-        'descricao' => 'max:150|min:2',
+        'descricao' => 'max:150',
         'status' => 'required',
         
     ];
@@ -29,7 +29,6 @@ class SensorCreate extends Component
         'codigo.unique' => 'Este código já está cadastrado.',
         'tipo.required' => 'O tipo de sensor é obrigatório.',
         'descricao.max' => 'O máximo de caracteres são 150',
-        'descricao.min' => 'O mínimo de caracteres são 2.',
         'status.required' => 'O status do sensor é obrigatório.' 
     ];
 
@@ -39,23 +38,24 @@ class SensorCreate extends Component
 
         $this->validate();
 
-        $ambientes = Ambiente::all();
 
         $sensor = Sensor::create([
             'codigo' => $this->codigo,
             'tipo' => $this->tipo,
             'descricao' => $this->descricao,
             'status' => $this->status,
-            'ambiente_id' => 
+            'ambiente_id' => $this->ambiente_id
         ]);
 
         session()->flash('message', 'Cadastro realizado!');
+         return redirect()->route('sensor.index');
         
     }
 
 
     public function render()
     {
-        return view('livewire.sensor.sensor-create');
+        $ambientes = Ambiente::all();
+        return view('livewire.sensor.sensor-create', compact('ambientes'));
     }
 }
