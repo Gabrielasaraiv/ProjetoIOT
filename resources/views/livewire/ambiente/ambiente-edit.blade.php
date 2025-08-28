@@ -14,7 +14,7 @@
             Editar Ambiente
         </h5>
 
-        <div class="card-body" style="background-color: rgb(243, 250, 255)">
+        <div class="card-body" style="background-color: rgb(236, 246, 254)">
             <form wire:submit.prevent="salvar">
                 <div class="py-3">
                     <div class="container">
@@ -36,8 +36,7 @@
                                     {{-- Descrição --}}
                                     <div class="mb-3">
                                         <label for="descricao" class="form-label">Descrição</label>
-                                        <textarea class="form-control" id="descricao" 
-                                        wire:model.defer="descricao"></textarea>
+                                        <textarea class="form-control" id="descricao" wire:model.defer="descricao"></textarea>
                                         @error('descricao')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -50,16 +49,16 @@
                                         <select class="form-select" id="status" name="status"
                                             wire:model.defer="status">
                                             <option hidden>Selecione</option>
-                                            <option value="ativo">Ativo</option>
-                                            <option value="inativo">Inativo</option>
+                                            <option value="1">Ativo</option>
+                                            <option value="0">Inativo</option>
                                         </select>
                                         @error('status')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
 
-                                   
-                                   <html>
+
+                                    <html>
 
                                     <head>
                                         <style>
@@ -67,14 +66,14 @@
 
                                                 width: 526px;
                                                 height: 40px;
-                                                background-color: #93befc;
+                                                background-color: #5b9fff;
                                                 color: white;
-                                                border: #93a8fb;
+                                                border: #496eff;
                                                 border-radius: 5px;
                                             }
 
                                             .botaoEditar:hover {
-                                                background-color: #5b7eff;
+                                                background-color: #2d4ec6;
                                                 color: #fff
                                             }
                                         </style>
@@ -86,15 +85,15 @@
                                     </html>
 
 
-                                  
-                                        {{-- Botão Cancelar --}}
-                                        <div class="mt-3">
-                                            <a href="{{ route('ambiente.index') }}"
-                                                class="btn btn-outline-danger w-100 py-2">
-                                                <i class="bi bi-x-circle me-1"></i> Cancelar
-                                            </a>
-                                        </div>
-                                   
+
+                                    {{-- Botão Cancelar --}}
+                                    <div class="mt-3">
+                                        <a href="{{ route('ambiente.index') }}"
+                                            class="btn btn-outline-danger w-100 py-2">
+                                            <i class="bi bi-x-circle me-1"></i> Cancelar
+                                        </a>
+                                    </div>
+
 
                                 </div>
                             </div>

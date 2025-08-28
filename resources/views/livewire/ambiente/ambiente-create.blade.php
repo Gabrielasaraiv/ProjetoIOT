@@ -14,7 +14,7 @@
             Cadastro de Ambiente
         </h5>
 
-        <div class="card-body" style="background-color: rgb(243, 250, 255)">
+        <div class="card-body" style="background-color:rgb(236, 246, 254)">
             <form wire:submit.prevent="store">
                 <div class="py-3">
                     <div class="container">
@@ -68,14 +68,14 @@
 
                                                 width: 526px;
                                                 height: 40px;
-                                                background-color: #93befc;
+                                                background-color: #5b9fff;
                                                 color: white;
-                                                border: #93a8fb;
+                                                border:  #496eff;
                                                 border-radius: 5px;
                                             }
 
                                             .botaoCadastrar:hover {
-                                                background-color: #5b7eff;
+                                                background-color: #2d4ec6;
                                                 color: #fff
                                             }
                                         </style>
