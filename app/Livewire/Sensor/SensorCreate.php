@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class SensorCreate extends Component
 {
-     public $ambiente_id;
+    public $ambiente_id;
     public $codigo;
     public $tipo;
     public $descricao;
@@ -16,6 +16,7 @@ class SensorCreate extends Component
 
 
     protected $rules = [
+        'ambiente_id' => 'required',
         'codigo' => 'max:100|min:2|unique:sensors,codigo',
         'tipo' => 'required',
         'descricao' => 'max:150',
@@ -24,6 +25,7 @@ class SensorCreate extends Component
     ];
 
     protected $messages = [
+        'ambiente_id.required'=> 'O ambiente é obrigatório',
         'codigo.max' => ' O máximo de caracteres são 100.',
         'codigo.min' => 'O mínimo de caracteres são 2',
         'codigo.unique' => 'Este código já está cadastrado.',
