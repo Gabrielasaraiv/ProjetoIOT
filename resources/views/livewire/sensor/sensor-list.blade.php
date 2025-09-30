@@ -3,7 +3,7 @@
         <div class="row align-items-center mb-4">
             <div class="col-md-6">
                 <h2 class="mb-0 text-dark">
-                    <i class="bi bi-code"></i> Sensores
+                    <i class="bi bi-phone-vibrate-fill"></i> Sensores
                 </h2>
             </div>
             <div class="col-md-6 text-end">
@@ -100,7 +100,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">Nenhum Sensor encontrado.</td>
+                                    <td colspan="7" class="text-center">Nenhum Sensor encontrado.</td>
                                 </tr>
                             @endforelse
                         </tbody>

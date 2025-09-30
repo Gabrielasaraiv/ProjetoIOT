@@ -18,7 +18,7 @@ class SensorEdit extends Component
 
     protected $rules = [
         'ambienteId' => 'required',
-        'codigo' => 'max:100|min:2|unique:sensors,codigo',
+        'codigo' => 'required|max:100|min:2|unique:sensors,codigo',
         'tipo' => 'required',
         'descricao' => 'max:150',
         'status' => 'required',
@@ -26,6 +26,7 @@ class SensorEdit extends Component
 
     protected $messages = [
         'ambiente_id.required'=> 'O ambiente é obrigatório',
+        'codigo.required'=>'O campo é obrigatório',
        'codigo.max' => ' O máximo de caracteres são 100.',
         'codigo.min' => 'O mínimo de caracteres são 2',
         'codigo.unique' => 'Este código já está cadastrado.',
@@ -59,7 +60,7 @@ class SensorEdit extends Component
 
         $this->validate([
         'ambienteId' => 'required',
-        'codigo' => 'max:100|min:2|unique:sensors,codigo,' . $this->sensorId,
+        'codigo' => 'required|max:100|min:2|unique:sensors,codigo,' . $this->sensorId,
         'tipo' => 'required',
         'descricao' => 'max:150',
         'status' => 'required',

@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('sensors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ambiente_id')->constrained('ambientes')->onDelete('cascade');
-            $table->string('codigo')->unique();
+            $table->string('codigo')->unique()->nullable(false);
             $table->string('tipo')->nullable(false);
             $table->text('descricao')->nullable();
             $table->boolean('status')->default(true);

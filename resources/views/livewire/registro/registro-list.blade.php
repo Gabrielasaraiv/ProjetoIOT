@@ -3,7 +3,7 @@
         <div class="row align-items-center mb-4">
             <div class="col-md-6">
                 <h2 class="mb-0 text-dark">
-                    <i class="bi bi-code"></i> Lista de Registros
+                    <i class="bi bi-collection-fill"></i> Registros
                 </h2>
             </div>
         </div>
@@ -69,7 +69,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">Nenhum Registro encontrado.</td>
+                                    <td colspan="7" class="text-center">Nenhum Registro encontrado.</td>
                                 </tr>
                             @endforelse
                         </tbody>

@@ -23,8 +23,8 @@ class RegistroRequest extends FormRequest
     {
         return [
             'sensor_id' => 'required',
-            'valor' => 'required',
-            'unidade' => 'required',
+            'valor' => 'required|min:2',
+            'unidade' => 'required|min:2',
             'data_hora' => 'required'
         ];
     }
@@ -32,8 +32,10 @@ class RegistroRequest extends FormRequest
     public function messages(){
         return [
         'sensor_id.required' => 'Campo obrigatório',
+        'valor.min'=> 'O mínimo de caracteres são 2',
         'valor.required' => 'Campo obrigatório',
         'unidade.required' => 'Campo obrigatório',
+        'unidade.min'=> 'O mínimo de caracteres são 2',
         'data_hora.required' => 'Campo obrigatório'
         ];
     }
