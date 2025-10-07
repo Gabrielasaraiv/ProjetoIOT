@@ -34,7 +34,7 @@ class RegistroList extends Component
     }
     public function render()
     {
-        $registros = Registro::orderBy('data_hora', 'desc')
+        $registros = Registro::orderBy('id', 'desc')
             ->orwhere('sensor_id', 'like', "%{$this->search}%")
             ->orwhere('valor', 'like', "%{$this->search}%")
             ->orwhere('unidade', 'like', "%{$this->search}%")
