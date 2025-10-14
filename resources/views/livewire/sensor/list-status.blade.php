@@ -1,9 +1,9 @@
 <div class="container-fluid bg-light min-vh-100 py-4" style="background-color: #f0f4f8;"> <!-- Fundo suave da página -->
-    <div class="container">
+    <div class="container-md">
         <div class="row align-items-center mb-4">
             <div class="col-md-6">
                 <h2 class="mb-0 text-dark">
-                    <i class="bi bi-phone-vibrate-fill"></i> Sensores
+                    <i class="bi bi-toggles"></i> Status Sensores
                 </h2>
             </div>
             <div class="col-md-6 text-end">
@@ -25,20 +25,19 @@
                         }
                     </style>
                 </head>
-                <a href="{{ route('status.list') }}" class="btn botaoNovo">
-                    <i class="bi bi-toggles"></i> Status dos Sensores
+                <a href="{{ route('sensor.index') }}" class="btn botaoNovo">
+                    <i class="bi bi-chevron-double-left"></i> Voltar
                 </a>
 
                 <a href="{{ route('sensor.create') }}" class="btn botaoNovo">
                     <i class="bi bi-plus-circle"></i> Novo Sensor
                 </a>
 
-
                 </html>
             </div>
         </div>
 
-        <div class="card shadow-lg border-0 rounded-4 bg-white">
+        <div class="card shadow-lg border-0 rounded-4 bg-white" style="margin-left: 10%; margin-right:10%">
             <div class="card-body">
                 <div class="row mb-4 align-items-center">
                     <div class="col-md-6 mb-2 mb-md-0">
@@ -49,7 +48,7 @@
                 {{-- pesquisa --}}
                 <div class="col-md-6 d-flex">
 
-                    <input placeholder="Buscar Sensores..." wire:model.live="search" class="form-control me-2">
+                    <input placeholder="Buscar..." wire:model.live="search" class="form-control me-2">
 
                 </div>
 
@@ -65,47 +64,39 @@
                     </div>
                 @endif
 
-                <div class="table-responsive">
+                <div class="table-responsive" >
                     <table class="table table-hover align-middle">
-                        <thead class="bg-info text-white" > <!-- Cabeçalho da tabela com fundo azul suave -->
+                        <thead class="bg-info text-white" > 
                             <tr>
                                 <th>ID</th>
-                                <th>Ambiente ID</th>
                                 <th>Código</th>
                                 <th>Tipo</th>
-                                <th>descrição</th>
-                                <th>Status</th>
-                                <th>Ações</th>
+                                <th >Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($sensores as $sensor)
                                 <tr>
                                     <td>{{ $sensor->id }}</td>
-                                    <td>{{ $sensor->ambiente_id }}</td>
                                     <td>{{ $sensor->codigo }}</td>
                                     <td>{{ $sensor->tipo }}</td>
-                                    <td>{{ $sensor->descricao }}</td>
-                                    <td>{{ $sensor->status == 1 ? "Ativo" : "Inativo"}}</td>
-
                                     <td>
-                                        <a href="{{ route('sensor.edit', ['id' => $sensor->id]) }}"
-                                            class="btn btn-sm btn-warning">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <a href="" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#deleteModal"
-                                            wire:click="abrirModalExclusao({{ $sensor->id }})">
-
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-
+                                        <div class="form-check form-switch d-flex align-items-center">
+                                            <input class="form-check-input me-4" type="checkbox" role="switch"
+                                                id="statusSwitch{{ $sensor->id }}" {{-- O atributo @checked define se o switch estará ligado (true) ou desligado (false) --}}
+                                                @checked($sensor->status == 1) {{-- Chamamos o método Livewire no evento de clique/mudança --}}
+                                                wire:click="toggleStatus({{ $sensor->id }})">
+                                            {{-- Exibe o status textual ao lado do switch --}}
+                                            <label class="form-check-label" for="statusSwitch{{ $sensor->id }}">
+                                                {{ $sensor->status == 1 ? 'Ativo' : 'Inativo' }}
+                                            </label>
+                                        </div>
 
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="text-center">Nenhum Sensor encontrado.</td>
+                                    <td colspan="4" class="text-center">Nenhum Sensor encontrado.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -145,30 +136,6 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div>
-                </div>
-
-                <div wire:ignore.self class="modal fade" id="deleteModal" tabindex="-1"
-                    aria-labelledby="deleteModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Excluir Sensor</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Tem certeza que deseja excluir o sensor?</p>
-                                
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Cancelar</button>
-
-                                <button type="button" class="btn btn-danger" wire:click="delete"
-                                    data-bs-dismiss="modal">Excluir</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

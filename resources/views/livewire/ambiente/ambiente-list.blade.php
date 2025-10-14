@@ -77,7 +77,7 @@
                                     <td>{{ $ambiente->id }}</td>
                                     <td>{{ $ambiente->nome }}</td>
                                     <td>{{ $ambiente->descricao }}</td>
-                                    <td>{{ $ambiente->status }}</td>
+                                    <td>{{ $ambiente->status == 1 ? "Ativo" : "Inativo"}}</td>
 
                                     <td>
                                         <a href="{{ route('ambiente.edit', ['id' => $ambiente->id]) }}"

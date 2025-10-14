@@ -5,6 +5,7 @@ use App\Livewire\Ambiente\AmbienteEdit;
 use App\Livewire\Ambiente\AmbienteList;
 use App\Livewire\Dashboard;
 use App\Livewire\Registro\RegistroList;
+use App\Livewire\Sensor\ListStatus;
 use App\Livewire\Sensor\SensorCreate;
 use App\Livewire\Sensor\SensorEdit;
 use App\Livewire\Sensor\SensorList;
@@ -21,5 +22,7 @@ Route::get('/sensor/{id}/edit', SensorEdit::class)->name('sensor.edit');
 Route::get('/sensor/index', SensorList::class)->name('sensor.index');
 
 Route::get('/dashboard', Dashboard::class)->name('dashboard');
+
+Route::get('/status/list', ListStatus::class)->name('status.list');
 
 
