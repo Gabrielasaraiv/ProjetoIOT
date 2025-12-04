@@ -16,7 +16,7 @@
         </h5>
 
         <div class="card-body" style="background-color:rgba(236, 243, 254, 0.711)">
-            <form wire:submit.prevent="store">
+            <form wire:submit.prevent="salvar">
                 <div class="py-3">
                     <div class="container">
                         <div class="row justify-content-center">
